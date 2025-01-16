@@ -1,16 +1,18 @@
 # Bringing Oracles To Beam Network
---------------------------------
+
+---
+
 # TL;DR!
+
 In this PoC, I set up a custom oracle using [Othentic cli](https://docs.othentic.xyz/main) stack and [eigenlayer](https://docs.eigenlayer.xyz/developers/avs-developer-guide).
 Basically there is a system where 3 Attester nodes fetch the price from a data source like [binance](https://api.binance.com/api/v3/ticker/price?symbol=ETHUSDT) and other Validator nodes check that the price is correct. After the check passes, the price is set on chain.
 
-[check this tx to see the price on chain of ETH in USD](https://amoy.polygonscan.com/address/0x7a67aa310537E6e9Afc99800fc557d22F6F1A859#readContract#F3)
+[check this contract to see the price on chain of ETH in USD](https://subnets-test.avax.network/beam/address/0xCD2eE76126Cae7279e5f3916Faf5a6B649250667?tab=code&contractTab=read)
 
-At the moment this is in amoy testnet. We can Deploy Othentic Contracts on Beam.
-
-_______
+---
 
 # Simple Price Oracle AVS Example
+
 This repository demonstrates how to implement a simple price oracle AVS using the Othentic Stack.
 
 ---
@@ -30,8 +32,6 @@ This repository demonstrates how to implement a simple price oracle AVS using th
 
 The Simple Price Oracle AVS Example demonstrates how to deploy a minimal AVS using Othentic Stack.
 
-
-
 ### Features
 
 - **Containerised deployment:** Simplifies deployment and scaling.
@@ -41,11 +41,11 @@ The Simple Price Oracle AVS Example demonstrates how to deploy a minimal AVS usi
 
 ```mdx
 📂 simple-price-oracle-avs-example
-├── Execution_Service  # Implements task execution logic
+├── Execution_Service # Implements task execution logic
 ├── Validation_Service # Implements task validation logic
-├── grafana            # Grafana monitoring configuration
+├── grafana # Grafana monitoring configuration
 ├── docker-compose.yml # Docker setup for Operator Nodes (Performer, Attesters, Aggregator), Execution Service, Validation Service, and monitoring tools
-└── README.md          # Project documentation
+└── README.md # Project documentation
 ```
 
 ## Architecture
@@ -57,14 +57,17 @@ The Performer node executes tasks using the Task Execution Service and sends the
 Attester Nodes validate task execution through the Validation Service. Based on the Validation Service's response, attesters sign the tasks. In this AVS:
 
 Task Execution logic:
+
 - Fetch the ETHUSDT price.
 - Store the result in IPFS.
 - Share the IPFS CID as proof.
 
 Validation Service logic:
+
 - Retrieve the price from IPFS using the CID.
 - Get the expected ETHUSDT price.
 - Validate by comparing the actual and expected prices within an acceptable margin.
+
 ---
 
 ## Prerequisites
@@ -94,7 +97,7 @@ Validation Service logic:
 Follow the steps in the official documentation's [Quickstart](https://docs.othentic.xyz/main/avs-framework/quick-start#steps) Guide for setup and deployment.
 
 ### Next
+
 Modify the different configurations, tailor the task execution logic as per your use case, and run the AVS.
 
 Happy Building! 🚀
-
